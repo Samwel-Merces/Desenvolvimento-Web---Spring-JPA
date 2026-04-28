@@ -1,0 +1,139 @@
+<!-- hash-identificacao: cb51ebae19fecc329e54f05a159d0eeb29fbde51a5713936560d2871e475430b -->
+<!--
+  Arquivo gerado automaticamente pelo TADS Spring Initializr customizado (versão didática).
+  ATENÇÃO: Este arquivo NÃO é gerado pelo Spring Initializr oficial.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dados-pessoais</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 720px; margin: 2.5rem auto; padding: 0 1.25rem 5rem; color: #333; line-height: 1.6; }
+    h1 { color: #6db33f; border-bottom: 2px solid #6db33f; padding-bottom: 0.4rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-top: 2rem; margin-bottom: 0.5rem; }
+    a { color: #6db33f; }
+    ul { padding-left: 1.5rem; margin: 0; }
+    li { margin: 0.35rem 0; }
+    .meta { background: #f6f8f6; border: 1px solid #d4e8c4; border-radius: 6px; padding: 1rem 1.25rem; font-size: 0.875rem; }
+    .hash { font-family: monospace; font-size: 0.78rem; word-break: break-all; color: #666; margin: 0.25rem 0 0; }
+    .generated { font-size: 0.8rem; color: #999; margin-top: 0.5rem; }
+    .curiosity { background: #fffbeb; border: 1px solid #fde68a; border-left: 4px solid #f59e0b; border-radius: 4px; padding: 0.75rem 1rem; margin-top: 2rem; font-size: 0.875rem; color: #78450e; }
+    .curiosity strong { display: block; margin-bottom: 0.25rem; }
+    .site-footer { position: fixed; bottom: 0; left: 0; right: 0; background: #1e2d1e; color: #7a9a7a; font-size: 0.75rem; text-align: center; padding: 0.6rem 1rem; border-top: 1px solid #2e4a2e; }
+    .site-footer a { color: #6db33f; text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Dados-pessoais</h1>
+  <p>Projeto de demonstração com Spring Boot</p>
+
+  <h2>Identificação do projeto</h2>
+  <div class="meta">
+    <strong>Desenvolvedores:</strong>
+    <ul>
+      <li>Fernando Tsuda</li>
+    </ul>
+    <p class="hash"><strong>hash-identificacao:</strong> cb51ebae19fecc329e54f05a159d0eeb29fbde51a5713936560d2871e475430b</p>
+    <p class="generated">Gerado em: 30/03/2026, 20:16:01</p>
+  </div>
+  <hr />
+  <main>
+    <h2>Lista de pessoas do backend</h2>
+    <button id="btnListar">Carregar</button>
+    <table>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Nome</td>
+          <td>Username</td>
+          <td>Contato</td>
+        </tr>
+      </thead>
+      <tbody id="resultadoLista">
+
+      </tbody>
+    </table>
+    <hr />
+    <button id="btnFulano">Carregar dados Fulano</button>
+    <button id="btnCiclano">Carregar dados Ciclano</button>
+    <button id="btnBeltrana">Carregar dados Beltrana</button>
+    <button id="btnEnzo">Carregar dados Enzo</button>
+
+    <article>
+      <h1 id="nome">XYZ</h1>
+      <p>ID: <strong id="id">123</strong></p>
+      <p>Username: <strong id="username">xpto</strong></p>
+      <p>E-mail: <strong id="email">xpto@email.com</strong></p>
+      <p>Data de nascimento: <strong id="dataNascimento">99/99/9999</strong></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    Gerado pelo <a href="https://ftsuda-senac.github.io/tads-spring-initializr/" target="_blank" rel="noopener noreferrer">TADS Spring Initializr</a> — v1.1.6
+  </footer>
+  <script>
+    async function listarPessoas() {
+      try {
+        const httpResp = await fetch('/pessoas');
+        if (!httpResp.ok) {
+          throw new Error('Erro HTTP ' + httpResp.status);
+        }
+        const dados = await httpResp.json();
+        const tbodyEl = document.getElementById('resultadoLista');
+        for (const p of dados) {
+          tbodyEl.insertAdjacentHTML('beforeend', `<tr>
+            <td>${p.id}</td>
+            <td>${p.nome}</td>
+            <td>${p.username}</td>
+            <td>E-mail: ${p.email}</td>
+          </tr>`)
+        }
+
+        document.getElementById('nome').textContent = dados.nome;
+        document.getElementById('id').textContent = dados.id;
+        document.getElementById('username').textContent = dados.username;
+        document.getElementById('email').textContent = dados.email;
+        document.getElementById('dataNascimento').textContent = dados.dataNascimento;
+      } catch (err) {
+        alert('Erro na requisição:\n' + err.message);
+      }
+    }
+    document.getElementById('btnListar').onclick = async (evt) => {
+      listarPessoas();
+    }
+
+    async function getPessoa(username) {
+      try {
+        const httpResp = await fetch(`/pessoas/${username}`);
+        if (!httpResp.ok) {
+          throw new Error('Erro HTTP ' + httpResp.status);
+        }
+        const dados = await httpResp.json();
+        document.getElementById('nome').textContent = dados.nome;
+        document.getElementById('id').textContent = dados.id;
+        document.getElementById('username').textContent = dados.username;
+        document.getElementById('email').textContent = dados.email;
+        document.getElementById('dataNascimento').textContent = dados.dataNascimento;
+      } catch (err) {
+        alert('Erro na requisição:\n' + err.message);
+      }
+    }
+    document.getElementById('btnFulano').onclick = async (evt) => {
+      getPessoa('fulano');
+    }
+    document.getElementById('btnCiclano').onclick = async (evt) => {
+      getPessoa('ciclano');
+    }
+    document.getElementById('btnBeltrana').onclick = async (evt) => {
+      getPessoa('beltrana');
+    }
+    document.getElementById('btnEnzo').onclick = async (evt) => {
+      getPessoa('enzo');
+    }
+  </script>
+
+</body>
+</html>
