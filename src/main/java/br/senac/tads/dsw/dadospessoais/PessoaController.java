@@ -27,11 +27,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/pessoas")
 public class PessoaController {
 
-	private final PessoaServiceMapImpl pessoaService;
+	private final PessoaService pessoaService;
 
-	public PessoaController(PessoaServiceMapImpl pessoaService) {
-		this.pessoaService = pessoaService;
-	}
+	public PessoaController(PessoaService  pessoaService) {
+		this.pessoaService  = pessoaService;
+	}	
 
 	@GetMapping
 	public List<PessoaDto> obterPessoas() {
