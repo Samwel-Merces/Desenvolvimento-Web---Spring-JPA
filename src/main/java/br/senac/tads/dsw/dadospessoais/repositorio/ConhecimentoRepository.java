@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import br.senac.tads.dsw.dadospessoais.entidade.ConhecimentoEntity;
 
-@Repository
-public interface ConhecimentoRepository extends JpaRepository<ConhecimentoEntity, Long> {
+
+public interface ConhecimentoRepository extends JpaRepository<ConhecimentoEntity, Long> {//Classe herda funcionalidades do JPA
     Optional<ConhecimentoEntity> findByNomeIgnoreCase(String nome);
     
 }

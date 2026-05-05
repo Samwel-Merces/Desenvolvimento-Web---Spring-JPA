@@ -23,7 +23,6 @@
 	</developers>
 	<!-- Versão do TADS Spring Initializr: 1.1.6 -->
 	<!-- hash-identificacao: cb51ebae19fecc329e54f05a159d0eeb29fbde51a5713936560d2871e475430b -->
-
 	<properties>
 		<java.version>21</java.version>
 	</properties>

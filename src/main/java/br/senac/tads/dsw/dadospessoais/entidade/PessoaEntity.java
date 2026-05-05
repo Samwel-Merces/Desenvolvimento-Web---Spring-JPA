@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 
 @Entity
 
-@Table(name = "tb_pessoas")
+@Table(name = "tb_pessoas")//indica em qual tabela o dados serão inseridos
 public class PessoaEntity {
 
     @Id
@@ -45,7 +45,7 @@ public class PessoaEntity {
 
     
     
-    @ManyToMany(
+    @ManyToMany( //indica pro java Relações entre tabelas
     cascade = CascadeType.ALL,
     fetch = FetchType.EAGER
     )
