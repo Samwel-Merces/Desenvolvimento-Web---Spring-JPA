@@ -18,7 +18,7 @@ private final Map<String, UserDetails> usuarios;
     public UsuarioSistemaService(PasswordEncoder passwordEncoder){
         this.usuarios = new HashMap<>();
     
-        this.usuarios.put("Admin", new UsuarioSistema(
+        this.usuarios.put("admin", new UsuarioSistema(
             "admin", passwordEncoder.encode("Abcd%12345"),
         List.of(
             new SimpleGrantedAuthority("ROLE_ADMIN"),
@@ -28,7 +28,7 @@ private final Map<String, UserDetails> usuarios;
     ));
 
         this.usuarios.put("user1",new UsuarioSistema(
-            "user2",
+            "user1",
             passwordEncoder.encode("Abcd%12345"),
             List.of(
                 new SimpleGrantedAuthority("ROLE_USER")
